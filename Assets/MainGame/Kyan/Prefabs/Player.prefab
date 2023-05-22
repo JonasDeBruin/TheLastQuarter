@@ -579,8 +579,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2af839fc8c1a04a9ffac78e9a78c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: -10
-  JumpHeight: 0.6
+  gravityScale: -20
+  JumpHeight: 1.5
   defaultSpeed: 5
   runMultiplier: 1.5
   sneakMultiplier: 0.5
@@ -603,8 +603,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d9fa422b2cd004b91c4b90233dfff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimMode1: 0
+  AnimMode2: 0
+  AnimMode3: 0
+  AnimMode4: 0
   MouseSens: {x: 100, y: 100}
   headJoint: {fileID: 1653723895537667220}
+  rotations: []
   anim: {fileID: 1653723895859790472}
 --- !u!114 &3323759328827824126
 MonoBehaviour:
