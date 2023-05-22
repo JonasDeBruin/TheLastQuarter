@@ -440,6 +440,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1653723895859790473, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653723895859790473, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1653723895859790473, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1653723897221672144, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b,
         type: 3}
       propertyPath: m_Name
@@ -499,6 +514,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553533369459028055, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b,
+        type: 3}
+      propertyPath: AnimMode2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c1a1ce7c06ae9c46900a0bd6b31cc4b, type: 3}
