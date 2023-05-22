@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PacManMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private GameObject playerObj;
+    [SerializeField] private float speed = 5f;
 
     //1 = up, 2 = down, 3 = left, 4 = right
     private int direction = 1;
@@ -40,18 +39,28 @@ public class PacManMovement : MonoBehaviour
         switch (direction)
         {
             case 1:
-                transform.position += Vector3.up * speed * Time.deltaTime;
+                transform.position += speed * Time.deltaTime * Vector3.up;
                 break;
             case 2:
-                transform.position += Vector3.down * speed * Time.deltaTime;
+                transform.position += speed * Time.deltaTime * Vector3.down;
                 break;
             case 3:
-                transform.position += Vector3.left * speed * Time.deltaTime;
+                transform.position += speed * Time.deltaTime * Vector3.left;
                 break;
             case 4:
-                transform.position += Vector3.right * speed * Time.deltaTime;
+                transform.position += speed * Time.deltaTime * Vector3.right;
                 break;
             default: break;
         }
-    }   
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+            Debug.Log("Hit collion");
+        //check for collision with map tag
+        if (collision.gameObject.CompareTag("Map"))
+        {
+            transform.position = new Vector2(0, 0);
+        }
+    }
 }
