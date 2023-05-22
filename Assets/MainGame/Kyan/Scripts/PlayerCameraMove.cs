@@ -44,36 +44,6 @@ public class PlayerCameraMove : MonoBehaviour
 
     void animCode()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            turnOff();
-            AnimMode1 = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            turnOff();
-            AnimMode2 = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            turnOff();
-            AnimMode3 = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            turnOff();
-            AnimMode4 = true;
-        }
-
-        
-        void turnOff()
-        {
-            AnimMode1 = false;
-            AnimMode2 = false;
-            AnimMode3 = false;
-            AnimMode4 = false;
-        }
-
         if (AnimMode1)
         {
             anim.SetFloat("Mouse", Input.GetAxis("Mouse X"));
