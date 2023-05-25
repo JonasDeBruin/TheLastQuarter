@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PacManMovement : MonoBehaviour
 {
@@ -18,22 +19,26 @@ public class PacManMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !Physics.Raycast(transform.position, Vector3.up, 1f))
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             direction = 1;
+                transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
 
-        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !Physics.Raycast(transform.position, Vector3.down, 1f))
+        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
         {
             direction = 2;
+                transform.rotation = Quaternion.Euler(0f, 0f, 270);
         }
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !Physics.Raycast(transform.position, Vector3.left, 1f))
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
         {
             direction = 3;
+                transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         }
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && !Physics.Raycast(transform.position, Vector3.right, 1f))
+        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
         {
             direction = 4;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0);
         }
 
         switch (direction)
@@ -43,6 +48,7 @@ public class PacManMovement : MonoBehaviour
                 break;
             case 2:
                 transform.position += speed * Time.deltaTime * Vector3.down;
+
                 break;
             case 3:
                 transform.position += speed * Time.deltaTime * Vector3.left;
