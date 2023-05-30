@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpaceshipMovement : MonoBehaviour
 {
     public float Speed;
-
+    public GameObject Bullet;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -28,7 +28,10 @@ public class SpaceshipMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //firing mechanic
+            //Instantiate(myPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            Vector2 target = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+            Vector2 myPos = new Vector2(transform.position.x, transform.position.y);
+            Instantiate(Bullet, myPos, Quaternion.identity);
         }
     }
 }
