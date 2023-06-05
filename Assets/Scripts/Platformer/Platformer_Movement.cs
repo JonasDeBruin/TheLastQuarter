@@ -9,24 +9,29 @@ public class Platformer_Movement : MonoBehaviour
     public float speed;
     public Rigidbody2D rb2d;
     public float jumpForce;
+    private bool isGrounded;
+    private bool isJumping;
+    private bool doubleJump;
 
-    public Vector3 boxSize;
+    private bool facingRight = true;
 
-    public float maxd;
-
-    public LayerMask layerMask;
-
+    public SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isJumping = true;
+        }
     }
 
     private void FixedUpdate()
@@ -36,30 +41,43 @@ public class Platformer_Movement : MonoBehaviour
         
         rb2d.velocity = new Vector2(moveHorizontal * speed, rb2d.velocity.y);
 
-        
-        
-        if (Input.GetKeyDown(KeyCode.Space) && Groundcheck())
+        if (moveHorizontal > 0)
+        {
+            sprite.flipX = false;
+        }
+        else if (moveHorizontal < 0)
+        {
+            sprite.flipX = true;
+        }
+
+        if (isJumping && (isGrounded || doubleJump))
         {
             Debug.Log("Jump");
+            if (!isGrounded)
+            {
+                doubleJump = false;
+            }
+            rb2d.velocity = new Vector2(rb2d.velocity.x, 0f);
             rb2d.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            isJumping = false;
+            
         }
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position - transform.up * maxd, boxSize);
-    }
 
-    private bool Groundcheck()
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (Physics2D.BoxCast(transform.position,boxSize,0,-transform.up,maxd,layerMask))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            return true;
+            isGrounded = false;
         }
-        else
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            return false;
+            isGrounded = true;
+            doubleJump = true;
         }
     }
 }
