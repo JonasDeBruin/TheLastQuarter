@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //GroundCheck
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 2.1f);
 
         if (isGrounded && velocity.y < 0)
         {
