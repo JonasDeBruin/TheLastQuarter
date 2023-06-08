@@ -2024,7 +2024,7 @@ GameObject:
   - component: {fileID: 232291749}
   - component: {fileID: 232291748}
   m_Layer: 5
-  m_Name: Enemies left text
+  m_Name: Wave Countdown Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2228,6 +2228,7 @@ GameObject:
   - component: {fileID: 238923031}
   - component: {fileID: 238923030}
   - component: {fileID: 238923029}
+  - component: {fileID: 238923033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2334,6 +2335,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
+--- !u!114 &238923033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238923028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da86c77f99c4d64ab5fa2a0a646693b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panSpeed: 30
+  panBorderThickness: 10
+  minPanX: -25
+  maxPanX: 50
+  minPanZ: -50
+  maxPanZ: 25
+  scrollSpeed: 5
+  minScrollY: 10
+  maxScrollY: 80
 --- !u!4 &239042810 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 358832491002044902, guid: 11e22ecb85b685d488ab68ae0f381a9d,
@@ -17717,6 +17739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1986954214}
   - component: {fileID: 1986954213}
+  - component: {fileID: 1986954215}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17740,6 +17763,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 1659083717}
   timeBetweenWaves: 5
+  waveCountDownText: {fileID: 232291748}
 --- !u!4 &1986954214
 Transform:
   m_ObjectHideFlags: 0
@@ -17755,6 +17779,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986954215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986954212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf355261654abb4783b0478e5046ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardTurretPrefab: {fileID: 4353675108949510916, guid: a619aeb229975804f9915a6d87d4d3ba,
+    type: 3}
 --- !u!4 &1993938394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 358832491002044902, guid: 11e22ecb85b685d488ab68ae0f381a9d,
