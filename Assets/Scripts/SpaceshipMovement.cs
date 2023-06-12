@@ -26,6 +26,10 @@ public class SpaceshipMovement : MonoBehaviour
         {
             transform.Translate(transform.right * 1 * Speed * Time.deltaTime);
         }
+
+    }
+    private void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Instantiate(myPrefab, new Vector3(0, 0, 0), Quaternion.identity);

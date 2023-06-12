@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject[] enemyPrefabs;
     // Start is called before the first frame update
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {

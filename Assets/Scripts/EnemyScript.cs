@@ -19,7 +19,10 @@ public class EnemyScript : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Ouch");
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
             Destroy(gameObject);
         }
     }
