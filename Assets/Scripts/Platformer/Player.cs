@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public Animator anim;
+    public GameObject MonsterWall;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +30,9 @@ public class Player : MonoBehaviour
 
     public void die()
     {
-        Debug.Log("dood");
+        anim.Play("Player_dead");
+        GetComponent<Platformer_Movement>().enabled = false;
     }
+
+    
 }
