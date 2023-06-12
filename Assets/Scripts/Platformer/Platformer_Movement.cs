@@ -1,106 +1,170 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Platformer_Movement : MonoBehaviour
 {
-    public float Move;
-    public float speed;
-    public Rigidbody2D rb;
-    public float jumpForce;
+    public float WalkSpeed = 10;
+    public float JumpForce = 5;
+
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+    public float maxJumpTime = .3f;
+    public int airJumps = 2;
+    private int numberofAirJumps = 0;
+
+
+    private Animator anim;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private CapsuleCollider2D capsuleCollider;
+    public Animations anims;
+
+    [SerializeField]
+    private PhysicsMaterial2D playerAir;
+
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
+
     private bool isGrounded;
-    private bool isJumping;
-    private bool doubleJump;
+    private bool endJump;
 
-    private bool facingRight = true;
+    [HideInInspector]
+    public bool inLaunchpad;
 
-    public SpriteRenderer sprite;
-
-
-    public Animation anim;
-    private Animations anims;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+    }
 
-        anim = GetComponentInChildren<Animation>();
+    void Update()
+    {
+        Jump();
+
+        //Animation SwitchCase
+        AnimationSwitchCase();
+
+        //Realistic Jump (Make jump shorter if holding "Jump" down shorter)
+        if (!inLaunchpad)
+            Fallmultiplier();
+
+
+        if (!isGrounded)
+        {
+            capsuleCollider.sharedMaterial = playerAir;
+        }
+        else { capsuleCollider.sharedMaterial = null; }
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Fallmultiplier()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (rb.velocity.y < 0)
         {
-            isJumping = true;
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump") || endJump)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    private Animations previousAnim;
+
+    private void AnimationSwitchCase()
+    {
+    if (anims == previousAnim) return;
 
         switch (anims)
         {
-            case Animations.walk:
-                anim.Play("WalkAnim");
-                break;
+
             case Animations.idle:
                 anim.Play("Player_Idle");
                 break;
             case Animations.jump:
-                anim.Play("JumpAnim");
+                anim.Play("Player_Jump");
+                break;
+            case Animations.walk:
+                anim.Play("Player_Run");
                 break;
             case Animations.fall:
-                anim.Play("FallAnim");
+                anim.Play("Player_Fall");
                 break;
             default:
                 break;
         }
+        previousAnim = anims;
     }
 
+    private void Jump()
+    {
+        //GroundCheck
+        isGrounded = isGroundedCheck();
+
+
+        if (Input.GetButtonDown("Jump") && isGrounded || Input.GetButtonDown("Jump") && !isGrounded && numberofAirJumps < airJumps)
+        {
+            numberofAirJumps++;
+            endJump = false;
+            //CancelInvoke("JumpEnd");
+            Invoke("JumpEnd", maxJumpTime);
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.AddForce(new Vector2(0, JumpForce), ForceMode2D.Impulse);
+        }
+        else if (isGrounded) { endJump = false; }
+
+        if (isGrounded)
+        {
+            numberofAirJumps = 0;
+        }
+    }
+
+    private void JumpEnd()
+    {
+        endJump = true;
+    }
+
+    private bool isGroundedCheck()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
     private void FixedUpdate()
     {
-        float Move = Input.GetAxis("Horizontal");
+        //Horizontal Input
+        var Move = Input.GetAxis("Horizontal");
 
-        rb.velocity = new Vector2(Move * speed, rb.velocity.y);
-
-
-
+        //Movement
+        Movement(Move);
+        //flip sprite
         if (Move > 0)
         {
-            sprite.flipX = false;
+            spriteRenderer.flipX = false;
         }
         else if (Move < 0)
         {
-            sprite.flipX = true;
+            spriteRenderer.flipX = true;
         }
+        //Player Facing Direction
+        //SetPlayerDirection(Move);
 
-        if (isJumping && (isGrounded || doubleJump))
-        {
-            if (!isGrounded)
-            {
-                doubleJump = false;
-            }
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-            isJumping = false;
-        }
+        //Set enum state to the correct animation type
+        SetAnimationState(Move);
+    }
+    private void Movement(float Move)
+    {
+        transform.position += new Vector3(Move, 0, 0) * Time.deltaTime * WalkSpeed;
     }
 
-
-    private void OnCollisionExit2D(Collision2D collision)
+    private void SetPlayerDirection(float Move)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            doubleJump = true;
-        }
+        if (Move > 0 && spriteRenderer.flipX) { spriteRenderer.flipX = false; }
+        if (Move < 0 && !spriteRenderer.flipX) { spriteRenderer.flipX = true; }
     }
 
     private void SetAnimationState(float Move)
@@ -112,14 +176,25 @@ public class Platformer_Movement : MonoBehaviour
         if (rb.velocity.y > 0 && !isGrounded) { anims = Animations.jump; return; }
         else
         if (rb.velocity.y < 0 && !isGrounded) { anims = Animations.fall; return; }
+
     }
 
+
+    public void die()
+    {
+        Debug.Log("dood");
+        anims = Animations.die;
+    }
+}
 
     public enum Animations
     {
         walk,
         idle,
         jump,
-        fall
+        fall,
+        die
     }
-}
+
+
+
