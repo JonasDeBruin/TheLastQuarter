@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCameraMove : MonoBehaviour
 {
+    public bool on = true;
     public bool animate;
 
     public Vector2 MouseSens;
@@ -21,21 +22,26 @@ public class PlayerCameraMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Plus))
+        if (on)
         {
-            animate = !animate;   
+            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                animate = !animate;
+            }
+            if (animate)
+            {
+                animCode();
+            }
+
+            Vector2 Mouse_Input = new Vector2(Input.GetAxis("Mouse X") * MouseSens.x * Time.deltaTime,
+                                              Input.GetAxis("Mouse Y") * MouseSens.y * Time.deltaTime);
+
+            xRotation -= Mouse_Input.y;
+            xRotation = Mathf.Clamp(xRotation, -90f, 70f);
+
+            headJoint.transform.eulerAngles = new Vector3(xRotation, headJoint.transform.eulerAngles.y, headJoint.transform.eulerAngles.z);
+            transform.Rotate(Vector3.up * Mouse_Input.x);
         }
-
-        animCode();
-
-        Vector2 Mouse_Input = new Vector2(Input.GetAxis("Mouse X") * MouseSens.x * Time.deltaTime,
-                                          Input.GetAxis("Mouse Y") * MouseSens.y * Time.deltaTime);
-
-        xRotation -= Mouse_Input.y;
-        xRotation = Mathf.Clamp(xRotation, -90f, 70f);
-            
-        headJoint.transform.eulerAngles = new Vector3(xRotation, headJoint.transform.eulerAngles.y, headJoint.transform.eulerAngles.z);
-        transform.Rotate(Vector3.up * Mouse_Input.x);
     }
 
     void animCode()
