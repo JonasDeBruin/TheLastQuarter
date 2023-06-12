@@ -7,14 +7,9 @@ public class PacManMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
 
+
     //1 = up, 2 = down, 3 = left, 4 = right
     private int direction = 1;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -67,6 +62,25 @@ public class PacManMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Map"))
         {
             transform.position = new Vector2(0, 0);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Teleporter"))
+        {
+            if (collision.gameObject.GetComponent<Teleporter>().isTeleporterA)
+            {
+                StartCoroutine(collision.gameObject.GetComponent<Teleporter>().WaitCollision());
+                transform.position = new Vector3(-4f, 1.1f);
+                
+
+            }
+            else
+            {
+                StartCoroutine(collision.gameObject.GetComponent<Teleporter>().WaitCollision());
+                transform.position = new Vector2(4f, 1.1f);
+            }
         }
     }
 }
