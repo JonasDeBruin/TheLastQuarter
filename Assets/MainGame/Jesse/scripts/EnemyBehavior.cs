@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour
 {
 
     public NavMeshAgent agent;
@@ -16,9 +16,11 @@ public class NewBehaviourScript : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public float patrolSpeed = 3f;
 
     //attacking
     public float timeBetweenAttacks;
+    public float chaseSpeed = 5f;
     bool alreadyAttacked;
 
     //states
@@ -27,23 +29,35 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, WhatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (!playerInSightRange && !playerInAttackRange) Invoke("Patroling", 6f);
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        //if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     private void Patroling()
     {
+        GetComponent<NavMeshAgent>().speed = patrolSpeed;
         if (!walkPointSet) SearchWalkPoint();
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkPoint); 
+
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            //walkpoint reached
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                walkPointSet = false;
+            }
+        }
     }
 
     private void SearchWalkPoint()
@@ -55,18 +69,22 @@ public class NewBehaviourScript : MonoBehaviour
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
-            walkPoint
+            walkPointSet = true;
         }
+        
     }
 
     private void ChasePlayer()
     {
-
+        agent.SetDestination(player.position);
+        GetComponent<NavMeshAgent>().speed = chaseSpeed;
     }
 
     private void AttackPlayer()
     {
+        agent.SetDestination(transform.position);
 
+        transform.LookAt(player);
     }
 
 }
