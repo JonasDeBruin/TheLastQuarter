@@ -11,7 +11,6 @@ public class Teleporter : MonoBehaviour
 
     public IEnumerator WaitCollision()
     {
-        Debug.Log("Wating");
         otherTeleporter.GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.2f);
         otherTeleporter.GetComponent<BoxCollider2D>().enabled = true;
