@@ -29,7 +29,7 @@ public class Finish : MonoBehaviour
         {
             MonsterWall.GetComponent<MonsterWall>().stop();
             player.GetComponentInChildren<Animator>().Play("Player_Finish");
-            collision.gameObject.GetComponent<Platformer_Movement>().enabled = false;
+            player.GetComponent<Platformer_Movement>().enabled = false;
         }
     }
 }

@@ -45,6 +45,8 @@ public class Platformer_Movement : MonoBehaviour
 
     void Update()
     {
+
+
         Jump();
 
         //Animation SwitchCase
@@ -179,12 +181,6 @@ public class Platformer_Movement : MonoBehaviour
 
     }
 
-
-    public void die()
-    {
-        Debug.Log("dood");
-        anims = Animations.die;
-    }
 }
 
     public enum Animations
@@ -193,7 +189,6 @@ public class Platformer_Movement : MonoBehaviour
         idle,
         jump,
         fall,
-        die
     }
 
 

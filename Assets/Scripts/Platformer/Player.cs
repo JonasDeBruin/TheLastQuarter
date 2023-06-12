@@ -8,10 +8,14 @@ public class Player : MonoBehaviour
     public Animator anim;
     public GameObject MonsterWall;
 
+    private Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class Player : MonoBehaviour
     {
         anim.Play("Player_dead");
         GetComponent<Platformer_Movement>().enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 
     
