@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlappyBird/Lusi 1.unity
     guid: ebfa4b8d3beb4f543805bd2642803b7a
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 2.unity
+    guid: b31cc84bfcd2f6d42b6d24e533c795d3
   m_configObjects: {}

@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private bool gameOver = false;
+    private bool isPaused = false;
+    private GameOverUI gameOverUI;
 
     private void Awake()
     {
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
+        gameOverUI = FindObjectOfType<GameOverUI>();
     }
 
     private void Update()
@@ -24,11 +28,32 @@ public class GameManager : MonoBehaviour
             // Restart the game
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
+        if (gameOver && Input.GetButtonDown("Cancel"))
+        {
+            // Quit the game
+            Application.Quit();
+        }
+
+        if (Input.GetButtonDown("Jump") && isPaused)
+        {
+            // Resume the game
+            Time.timeScale = 1f;
+            isPaused = false;
+        }
     }
 
     public void GameOver()
     {
         gameOver = true;
         Debug.Log("Game Over");
+
+        // Pause the game
+        Time.timeScale = 0f;
+        isPaused = true;
+
+        // Show game over text
+        gameOverUI.ShowGameOverText();
     }
 }
+
