@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MMscript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Playgame()
     {
-        
+        SceneManager.LoadScene("JessedK");
+    }
+    public void Quit()
+    {
+        //Deze gaat uiteindelijk naar de game toe
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
