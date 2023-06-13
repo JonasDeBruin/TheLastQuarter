@@ -30,6 +30,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
+            ScoreManager.instance.Addscore();
         }
 
     }

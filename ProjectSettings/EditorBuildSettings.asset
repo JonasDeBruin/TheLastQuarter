@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/JessedK.unity
     guid: ffd87d54d66545b4eafc14a202d9d09e
   - enabled: 1
-    path: Assets/Scenes/SpaceGameControls.unity
-    guid: 29b564cf588fc564c81361bff2425a2c
-  - enabled: 1
     path: Assets/Scenes/SpaceGameMM.unity
     guid: 4da92057959d15b4db0b2381ae0dff6b
+  - enabled: 1
+    path: Assets/Scenes/WinScreenMG.unity
+    guid: 5b23402dcc4d4d045a00f0e7a9bf6405
+  - enabled: 1
+    path: Assets/Scenes/LosingScreenMG.unity
+    guid: 74d44c67560a8b94fb03ecc271c24dec
   m_configObjects: {}

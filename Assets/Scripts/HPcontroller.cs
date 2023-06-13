@@ -42,7 +42,7 @@ public class HPcontroller : MonoBehaviour
 
     public void Die()
     {
-        SceneManager.LoadScene("SpaceGameMM");
+        SceneManager.LoadScene("LosingScreenMG");
     }
 }
 
