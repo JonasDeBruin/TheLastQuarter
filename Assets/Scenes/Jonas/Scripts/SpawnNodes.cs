@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnNodes : MonoBehaviour
 {
-    int numToSpawn = 25;
+    int numToSpawn = 28;
 
     [SerializeField] float currentSpawnOffset;
     [SerializeField] float spawnOffset = 0.3f;
@@ -17,7 +17,7 @@ public class SpawnNodes : MonoBehaviour
             //loop over all spawn points
             for (int i = 0; i < numToSpawn; i++)
             {
-                GameObject clone = Instantiate(gameObject, new Vector3(transform.position.x + currentSpawnOffset, transform.position.y, 0), Quaternion.identity);
+                GameObject clone = Instantiate(gameObject, new Vector3(transform.position.x, transform.position.y + currentSpawnOffset, 0), Quaternion.identity);
                 currentSpawnOffset += spawnOffset;
             }
         }
