@@ -16,7 +16,7 @@ public class SpawnNodes : MonoBehaviour
             currentSpawnOffset = spawnOffset;
             //loop over all spawn points
             for (int i = 0; i < numToSpawn; i++)
-            {
+            { 
                 GameObject clone = Instantiate(gameObject, new Vector3(transform.position.x + currentSpawnOffset, transform.position.y, 0), Quaternion.identity);
                 currentSpawnOffset += spawnOffset;
             }
