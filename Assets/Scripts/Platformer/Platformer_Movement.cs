@@ -62,6 +62,7 @@ public class Platformer_Movement : MonoBehaviour
             capsuleCollider.sharedMaterial = playerAir;
         }
         else { capsuleCollider.sharedMaterial = null; }
+       
 
     }
 
@@ -180,6 +181,7 @@ public class Platformer_Movement : MonoBehaviour
         if (rb.velocity.y < 0 && !isGrounded) { anims = Animations.fall; return; }
 
     }
+
 
 }
 
