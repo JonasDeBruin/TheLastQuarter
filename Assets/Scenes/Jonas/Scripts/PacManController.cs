@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,16 @@ public class PacManController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             movementController.SetDirection("right");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("pellet hot");
+        if (collision.gameObject.CompareTag("Node"))
+        {
+            GameObject pallet = collision.gameObject.transform.GetChild(0).gameObject;
+            pallet.SetActive(false);
         }
     }
 }
