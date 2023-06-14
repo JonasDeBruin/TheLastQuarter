@@ -875,6 +875,7 @@ MonoBehaviour:
   - {fileID: 6753939360039682583, guid: e4ea810d8cef4ba4fa1f53432911e075, type: 3}
   - {fileID: 4081061232122096569, guid: ae9900cd3a2e8534e926326b02c2a9a5, type: 3}
   - {fileID: 7362942268634403133, guid: cbfcc77988784724ab9483e9d35ccc1f, type: 3}
+  Spawnrate: 0.5
 --- !u!4 &1583489392
 Transform:
   m_ObjectHideFlags: 0
