@@ -22,7 +22,9 @@ public class Wave_Spawner : MonoBehaviour
         }
         countdown -= Time.deltaTime;
 
-        waveCountDownText.text = Mathf.Floor(countdown + 1).ToString();
+        countdown = Mathf.Clamp(countdown, 0, Mathf.Infinity);
+
+        waveCountDownText.text = string.Format("{0:00.00}", countdown);
     }
 
     IEnumerator SpawnWave()
