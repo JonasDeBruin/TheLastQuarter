@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Bullet
+  - Pipe
+  - FlappyFinish
+  - Ground
+  - Spike
+  - 'Map '
+  - Node
+  - Teleporter
+  - Pallet
+  - wall
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -14,6 +26,9 @@ TagManager:
   - WhatIsEnemy
   - WhatIsPlayer
   - Obstacle
+  - Ground
+  - Monster
+  - Player
   - 
   - 
   - 
