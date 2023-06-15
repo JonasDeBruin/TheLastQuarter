@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,6 +29,9 @@ public class EnemyBehavior : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public Animator animator;
+    public Animator animatorScare;
+    public Camera jumpscareCam;
+    public Camera maincamera;
 
     private void Awake()
     {
@@ -35,14 +40,16 @@ public class EnemyBehavior : MonoBehaviour
     }
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>(); 
+        animator = GetComponentInChildren<Animator>();
+        maincamera.enabled = true;
+        jumpscareCam.enabled = false;
     }
 
 
     private void Update()
     {
 
-        if(Mathf.Abs(agent.velocity.x + agent.velocity.z) > 0) 
+        if (Mathf.Abs(agent.velocity.x + agent.velocity.z) > 0)
         {
             animator.SetBool("IsWalking", true);
         }
@@ -50,6 +57,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
+
 
 
 
@@ -105,6 +113,16 @@ public class EnemyBehavior : MonoBehaviour
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            jumpscareCam.enabled = !jumpscareCam.enabled;
+            animatorScare.SetBool("IsAttacking", true);
+            Debug.Log("DEATH");
+        }
     }
 
 }
