@@ -56,24 +56,4 @@ public class Movement : MonoBehaviour
     {
         direction = newDirection;
     }
-
-    //Teleporter
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Teleporter"))
-        {
-            if (collision.gameObject.GetComponent<Teleporter>().isTeleporterA)
-            {
-                StartCoroutine(collision.gameObject.GetComponent<Teleporter>().WaitCollision());
-                transform.position = new Vector3(-4f, 1.1f);
-                
-
-            }
-            else
-            {
-                StartCoroutine(collision.gameObject.GetComponent<Teleporter>().WaitCollision());
-                transform.position = new Vector2(4f, 1.1f);
-            }
-        }
-    }
 }

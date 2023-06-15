@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score '
+  m_text: 'Score:0000 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cef1c53a4ae9de14cae948c222204336, type: 2}
   m_sharedMaterial: {fileID: 5269691412450267215, guid: cef1c53a4ae9de14cae948c222204336,
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 517.45844, w: 0}
+  m_margin: {x: 0, y: 0, z: 276.88956, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3200,6 +3200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7195fc618b25a6438ce3eb9a245dcfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 57225770}
 --- !u!114 &93985584
 MonoBehaviour:
   m_ObjectHideFlags: 0
