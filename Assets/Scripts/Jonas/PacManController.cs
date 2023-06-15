@@ -41,7 +41,12 @@ public class PacManController : MonoBehaviour
 
     private void CheckForWin()
     {
-        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Node");
+        if (score == 2980)
+        {
+
+        }
+        //var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Node"|| obj.name == "Node(Clone)");
+        //return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

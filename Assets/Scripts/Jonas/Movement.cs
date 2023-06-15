@@ -7,14 +7,23 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private GameObject currentNode;
     [SerializeField] private float speed = 5f;
-
     
     private string direction = "";
     private string lastMovingDirection = "";
+
+    [SerializeField] private GameObject rightTeleporter;
+    [SerializeField] private GameObject leftTeleporter;
+
     // Update is called once per frame
     void Update()
     {
         NodeController currentNodeController = currentNode.GetComponent<NodeController>();
+
+        if (currentNode == rightTeleporter)
+        {
+            transform.position = leftTeleporter.transform.position;
+            currentNode = leftTeleporter;
+        }
 
         transform.position = Vector2.MoveTowards(transform.position, currentNode.transform.position, speed * Time.deltaTime);
 
@@ -32,7 +41,6 @@ public class Movement : MonoBehaviour
         //Check if we in the middle of the node
         if ((transform.position.x == currentNode.transform.position.x && transform.position.y == currentNode.transform.position.y) || reverseDirection)
         {
-            
             GameObject newNode = currentNodeController.GetNodeFromDirection(direction);
 
             if (newNode != null)
