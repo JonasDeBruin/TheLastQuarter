@@ -26,20 +26,40 @@ public class EnemyBehavior : MonoBehaviour
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    public Animator animator;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>(); 
+    }
+
 
     private void Update()
     {
+
+        if(Mathf.Abs(agent.velocity.x + agent.velocity.z) > 0) 
+        {
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
+
+
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, WhatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Invoke("Patroling", 6f);
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         //if (playerInAttackRange && playerInSightRange) AttackPlayer();
+
+      
     }
 
     private void Patroling()

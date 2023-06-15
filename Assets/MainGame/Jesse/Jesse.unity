@@ -705,6 +705,7 @@ MonoBehaviour:
   attackRange: 0
   playerInSightRange: 0
   playerInAttackRange: 0
+  animator: {fileID: 0}
 --- !u!114 &1283922249
 MonoBehaviour:
   m_ObjectHideFlags: 0
