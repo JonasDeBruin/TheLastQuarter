@@ -24,6 +24,7 @@ public class PacManController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             movementController.SetDirection("up");
+
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -36,6 +37,23 @@ public class PacManController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.D))
         {
             movementController.SetDirection("right");
+        }
+        //check in what direction the player is moving
+        if (movementController.GetDirection() == "up")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
+        else if (movementController.GetDirection() == "down")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 270);
+        }
+        else if (movementController.GetDirection() == "left")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else if (movementController.GetDirection() == "right")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0);
         }
     }
 

@@ -72,4 +72,9 @@ public class Movement : MonoBehaviour
     {
         direction = newDirection;
     }
+
+    public string GetDirection()
+    {
+        return direction;
+    }
 }
