@@ -6,7 +6,7 @@ using TMPro;
 
 public class Arcade_Machine : MonoBehaviour
 {
-    public Scene GameScene;
+    public int GameSceneIndex;
 
     public TextMeshPro text;
 
@@ -61,14 +61,14 @@ public class Arcade_Machine : MonoBehaviour
                     lights[i].GetComponent<Light>().intensity -= temp * Time.deltaTime * 5;
                 }
             }
-            else if(!lights[1].GetComponent<Light>().enabled)
+            else if(lights[1].GetComponent<Light>().enabled)
             {
                 for (int i = 0; i < lights.Count; i++)
                 {
                     lights[i].GetComponent<Light>().enabled = false;
                 }
 
-                SceneManager.LoadScene(GameScene.name);
+                SceneManager.LoadScene(GameSceneIndex);
                 //Start Game
             }
             
