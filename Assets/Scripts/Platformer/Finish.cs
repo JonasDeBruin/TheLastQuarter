@@ -28,6 +28,7 @@ public class Finish : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             MonsterWall.GetComponent<MonsterWall>().stop();
+            player.GetComponentInChildren<Platformer_Movement>().Resetvelocity();
             player.GetComponentInChildren<Animator>().Play("Player_Finish");
             player.GetComponent<Platformer_Movement>().enabled = false;
         }

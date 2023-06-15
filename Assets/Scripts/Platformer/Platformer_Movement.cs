@@ -179,9 +179,12 @@ public class Platformer_Movement : MonoBehaviour
         if (rb.velocity.y > 0 && !isGrounded) { anims = Animations.jump; return; }
         else
         if (rb.velocity.y < 0 && !isGrounded) { anims = Animations.fall; return; }
-
     }
 
+    public void Resetvelocity()
+    {
+        rb.velocity = new Vector2(0f, 0f);
+    }
 
 }
 
