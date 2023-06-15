@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - Ground
+  - Spike
+  - wall
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -16,6 +20,9 @@ TagManager:
   - WhatIsEnemy
   - WhatIsPlayer
   - Obstacle
+  - Ground
+  - Monster
+  - Player
   - 
   - 
   - 
