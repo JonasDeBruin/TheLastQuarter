@@ -27,7 +27,7 @@ public class Wave_Spawner : MonoBehaviour
             countdown -= Time.deltaTime;
             return;
         }
-        if (gameStarted && CheckIfAllEnemiesDead() && !GameManager.gameEnded)
+        if (gameStarted && CheckIfAllEnemiesDead() && !TDGameManager.gameEnded)
         {
             StartCoroutine(SpawnWave());
         }
@@ -40,7 +40,7 @@ public class Wave_Spawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        GameManager.roundsSurvived++;
+        TDGameManager.roundsSurvived++;
         for (int i = 0; i < EnemyCountPerWave[waveIndex]; i++)
         {
             SpawnEnemy();

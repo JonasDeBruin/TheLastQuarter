@@ -8,6 +8,6 @@ public class RoundsUI : MonoBehaviour
     public TMP_Text text;
     private void Update()
     {
-        text.text = GameManager.roundsSurvived.ToString();
+        text.text = TDGameManager.roundsSurvived.ToString();
     }
 }

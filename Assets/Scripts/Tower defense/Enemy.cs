@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.gameEnded) return;
+        if (TDGameManager.gameEnded) return;
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 

@@ -60,7 +60,7 @@ public class Turret : MonoBehaviour
     void Update()
     {
         fireCountdown -= Time.deltaTime;
-        if (target == null || GameManager.gameEnded) return;
+        if (target == null || TDGameManager.gameEnded) return;
 
 
         //Target lockon

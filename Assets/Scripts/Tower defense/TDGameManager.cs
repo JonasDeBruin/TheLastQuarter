@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class TDGameManager : MonoBehaviour
 {
     public static bool gameEnded = false;
     public static int roundsSurvived = 0;
