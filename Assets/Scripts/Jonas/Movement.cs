@@ -7,12 +7,14 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private GameObject currentNode;
     [SerializeField] private float speed = 5f;
-    
+
     private string direction = "";
     private string lastMovingDirection = "";
 
     [SerializeField] private GameObject rightTeleporter;
+    [SerializeField] private GameObject rightTeleportTo;
     [SerializeField] private GameObject leftTeleporter;
+    [SerializeField] private GameObject leftTeleportTo;
 
     // Update is called once per frame
     void Update()
@@ -22,8 +24,14 @@ public class Movement : MonoBehaviour
         if (currentNode == rightTeleporter)
         {
             transform.position = leftTeleporter.transform.position;
-            currentNode = leftTeleporter;
+            currentNode = leftTeleportTo;
         }
+        else if (currentNode == leftTeleporter)
+        {
+            transform.position = rightTeleporter.transform.position;
+            currentNode = rightTeleportTo;
+        }
+
 
         transform.position = Vector2.MoveTowards(transform.position, currentNode.transform.position, speed * Time.deltaTime);
 

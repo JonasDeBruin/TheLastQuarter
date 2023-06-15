@@ -49941,9 +49941,19 @@ PrefabInstance:
       objectReference: {fileID: 1604933925}
     - target: {fileID: 722820971469403353, guid: c5e3720f73bc0d946b232fe8c28c3cf6,
         type: 3}
+      propertyPath: leftTeleportTo
+      value: 
+      objectReference: {fileID: 1985717758}
+    - target: {fileID: 722820971469403353, guid: c5e3720f73bc0d946b232fe8c28c3cf6,
+        type: 3}
       propertyPath: leftTeleporter
       value: 
       objectReference: {fileID: 109747506}
+    - target: {fileID: 722820971469403353, guid: c5e3720f73bc0d946b232fe8c28c3cf6,
+        type: 3}
+      propertyPath: rightTeleportTo
+      value: 
+      objectReference: {fileID: 968047519}
     - target: {fileID: 722820971469403353, guid: c5e3720f73bc0d946b232fe8c28c3cf6,
         type: 3}
       propertyPath: rightTeleporter
