@@ -47,7 +47,6 @@ public class CameraController : MonoBehaviour
 
         #region Camera Zooming
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log(scroll);
         Vector3 pos = transform.position;
 
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;

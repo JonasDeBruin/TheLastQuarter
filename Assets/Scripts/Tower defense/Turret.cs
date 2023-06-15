@@ -59,7 +59,8 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null) return;
+        fireCountdown -= Time.deltaTime;
+        if (target == null || GameManager.gameEnded) return;
 
 
         //Target lockon
@@ -74,7 +75,7 @@ public class Turret : MonoBehaviour
             fireCountdown = 1f / fireRate;
         }
 
-        fireCountdown -= Time.deltaTime;
+        
     }
 
     void Shoot()

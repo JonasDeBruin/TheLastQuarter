@@ -32,6 +32,7 @@ public class Node : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (GameManager.gameEnded) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
         if (!buildManager.CanBuild) return;
 
@@ -46,6 +47,7 @@ public class Node : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        if (GameManager.gameEnded) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (!buildManager.CanBuild) return;
@@ -56,6 +58,7 @@ public class Node : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (GameManager.gameEnded) return;
         rend.material.color = startColor;
     }
 }

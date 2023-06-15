@@ -8,34 +8,47 @@ public class Wave_Spawner : MonoBehaviour
     public Transform enemyPrefab;
     public Transform spawnPoint;
     public float timeBetweenWaves = 5f;
-    public TMP_Text waveCountDownText;
+    public int[] EnemyCountPerWave;
 
     private float countdown = 2f;
     private int waveIndex = 0;
+    private bool gameStarted = false;
 
     private void Update()
     {
-        if (countdown <= 0f)
+        
+        if (!gameStarted)
+        {
+            if (countdown <= 0f)
+            {
+                gameStarted = true;
+                StartCoroutine(SpawnWave());
+            }
+            countdown -= Time.deltaTime;
+            return;
+        }
+        if (gameStarted && CheckIfAllEnemiesDead() && !GameManager.gameEnded)
         {
             StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
         }
-        countdown -= Time.deltaTime;
+    }
 
-        countdown = Mathf.Clamp(countdown, 0, Mathf.Infinity);
-
-        waveCountDownText.text = string.Format("{0:00.00}", countdown);
+    public bool CheckIfAllEnemiesDead()
+    {
+       return GameObject.FindGameObjectsWithTag("Enemy").Length == 0;
     }
 
     IEnumerator SpawnWave()
     {
         
-        for (int i = 0; i <= waveIndex; i++)
+        for (int i = 0; i < EnemyCountPerWave[waveIndex]; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
+        GameManager.roundsSurvived++;
         waveIndex++;
+        
     }
 
     void SpawnEnemy()
