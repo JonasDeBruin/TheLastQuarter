@@ -8,6 +8,10 @@ TagManager:
   - Bullet
   - Ground
   - Spike
+  - 'Map '
+  - Node
+  - Teleporter
+  - Pallet
   - wall
   - enemy
   layers:
