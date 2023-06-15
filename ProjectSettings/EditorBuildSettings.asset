@@ -11,4 +11,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainGame/Kyan/Scenes/DebugSceneKyan.unity
     guid: 6ab8e1099fa1c284e972a8e40820279d
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 1.unity
+    guid: ebfa4b8d3beb4f543805bd2642803b7a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 2.unity
+    guid: d4def4bceb3e8d1479310c193c84ffe3
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 3.unity
+    guid: 651620cf05795f5469f0d554585e1d8c
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 4.unity
+    guid: d6c526359652e384b91eb6834db10f37
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird/Lusi 5.unity
+    guid: cd4d36744f7e3a94cb1b5514fa248013
   m_configObjects: {}
