@@ -14,87 +14,67 @@ public class NodeController : MonoBehaviour
     public GameObject upNode;
     public GameObject downNode;
 
-    // Start is called before the first frame update
-    void Start()
+    private void CheckRaycast(ref bool canMove, ref GameObject node, Vector2 direction)
     {
-        RaycastHit2D[] hitsDown;
-        //Shoot ray down
-        hitsDown = Physics2D.RaycastAll(transform.position, -Vector2.up);
+        RaycastHit2D[] hits;
+        hits = Physics2D.RaycastAll(transform.position, direction);
 
-        for (int i = 0; i < hitsDown.Length; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
-            float distance = Mathf.Abs(hitsDown[i].point.y - transform.position.y);
-            if (distance < 0.4f)
-            {
-                canMoveDown = true;
-                downNode = hitsDown[i].collider.gameObject;
-            }
-        }
+            float distance;
 
-        RaycastHit2D[] hitsUp;
-        //Shoot ray down
-        hitsUp = Physics2D.RaycastAll(transform.position, Vector2.up);
-
-        for (int i = 0; i < hitsUp.Length; i++)
-        {
-            float distance = Mathf.Abs(hitsUp[i].point.y - transform.position.y);
-            if (distance < 0.4f)
+            if (direction == -Vector2.up || direction == Vector2.up)
             {
-                canMoveUp = true;
-                upNode = hitsUp[i].collider.gameObject;
+                distance = Mathf.Abs(hits[i].point.y - transform.position.y);
             }
-        }
-
-        RaycastHit2D[] hitsRight;
-        //Shoot ray down
-        hitsRight = Physics2D.RaycastAll(transform.position, Vector2.right);
-
-        for (int i = 0; i < hitsRight.Length; i++)
-        {
-            float distance = Mathf.Abs(hitsRight[i].point.x - transform.position.x);
-            if (distance < 0.4f)
+            else if (direction == Vector2.right || direction == Vector2.left)
             {
-                canMoveRight = true;
-                rightNode = hitsRight[i].collider.gameObject;
-            }
-        }
-
-        RaycastHit2D[] hitsLeft;
-        //Shoot ray down
-        hitsLeft = Physics2D.RaycastAll(transform.position, Vector2.left);
-
-        for (int i = 0; i < hitsLeft.Length; i++)
-        {
-            float distance = Mathf.Abs(hitsLeft[i].point.x - transform.position.x);
-            if (distance < 0.4f)
-            {
-                canMoveLeft = true;
-                leftNode = hitsLeft[i].collider.gameObject;
-            }
-        }
-
-    }
-        public GameObject GetNodeFromDirection(string direction)
-        {
-            if (direction == "left" && canMoveLeft)
-            {
-                return leftNode;
-            }
-            else if (direction == "right" && canMoveRight)
-            {
-                return rightNode;
-            }
-            else if (direction == "up" && canMoveUp)
-            {
-                return upNode;
-            }
-            else if (direction == "down" && canMoveDown)
-            {
-                return downNode;
+                distance = Mathf.Abs(hits[i].point.x - transform.position.x);
             }
             else
             {
-                return null;
+                distance = 0f;
             }
+
+            if (distance < 0.4f)
+            {
+                canMove = true;
+                node = hits[i].collider.gameObject;
+            }
+        }
+    }
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        CheckRaycast(ref canMoveDown, ref downNode, -Vector2.up);
+        CheckRaycast(ref canMoveUp, ref upNode, Vector2.up);
+        CheckRaycast(ref canMoveRight, ref rightNode, Vector2.right);
+        CheckRaycast(ref canMoveLeft, ref leftNode, Vector2.left);
+    }
+    
+    public GameObject GetNodeFromDirection(string direction)
+    {
+        if (direction == "left" && canMoveLeft)
+        {
+            return leftNode;
+        }
+        else if (direction == "right" && canMoveRight)
+        {
+            return rightNode;
+        }
+        else if (direction == "up" && canMoveUp)
+        {
+            return upNode;
+        }
+        else if (direction == "down" && canMoveDown)
+        {
+            return downNode;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -36,6 +37,11 @@ public class PacManController : MonoBehaviour
         {
             movementController.SetDirection("right");
         }
+    }
+
+    private void CheckForWin()
+    {
+        var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Node");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
