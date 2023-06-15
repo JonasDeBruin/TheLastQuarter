@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         {
             EndGame();
         }
-        if (roundsSurvived > 5)
+        if (roundsSurvived >= 5 && CheckIfAllEnemiesDead())
         {
             WonGame();
         }
@@ -27,6 +27,11 @@ public class GameManager : MonoBehaviour
     {
         gameEnded = true;
         Debug.Log("Game Over!");
+    }
+
+    public bool CheckIfAllEnemiesDead()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy").Length == 0;
     }
 
     private void WonGame()

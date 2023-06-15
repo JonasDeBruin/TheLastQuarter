@@ -40,13 +40,13 @@ public class Wave_Spawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        
+        GameManager.roundsSurvived++;
         for (int i = 0; i < EnemyCountPerWave[waveIndex]; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
-        GameManager.roundsSurvived++;
+        
         waveIndex++;
         
     }
