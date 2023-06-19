@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TDGameManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class TDGameManager : MonoBehaviour
     private void EndGame()
     {
         gameEnded = true;
+        SceneManager.LoadScene("LosingScreenMG");
         Debug.Log("Game Over!");
     }
 
@@ -36,6 +38,6 @@ public class TDGameManager : MonoBehaviour
 
     private void WonGame()
     {
-        winUI.SetActive(true);
+        SceneManager.LoadScene("WinScreenMG");
     }
 }
