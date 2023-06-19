@@ -117,12 +117,17 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
         {
             jumpscareCam.enabled = !jumpscareCam.enabled;
             animatorScare.SetBool("IsAttacking", true);
             Debug.Log("DEATH");
         }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log("FUCKING CRINGE");
     }
 
 }

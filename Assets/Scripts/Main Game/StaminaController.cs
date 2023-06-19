@@ -78,4 +78,8 @@ public class StaminaController : MonoBehaviour
         }
         staminaBar.color = newColor;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Player Collided with: " + collision.gameObject.name);
+    }
 }

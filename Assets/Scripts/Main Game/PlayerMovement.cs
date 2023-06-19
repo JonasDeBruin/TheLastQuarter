@@ -126,4 +126,9 @@ public class PlayerMovement : MonoBehaviour
         }
         return defaultSpeed;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log(hit.gameObject.name);
+    }
 }
