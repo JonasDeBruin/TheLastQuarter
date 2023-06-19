@@ -7,11 +7,6 @@ public class MMscript : MonoBehaviour
 {
     public void Playgame()
     {
-        SceneManager.LoadScene("JessedK");
+        SceneManager.LoadScene("Main Game");
     }
-    public void Quit()
-    {
-        //Deze gaat uiteindelijk naar de game toe
-    }
-
 }
