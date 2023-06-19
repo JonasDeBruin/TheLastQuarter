@@ -4,26 +4,42 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PacManController : MonoBehaviour
 {
     Movement movementController;
     private int score = 0;
+    private float time = 60;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text timeText;
+    [SerializeField] private AudioSource eatingSFX;
+
     // Start is called before the first frame update
     void Start()
     {
         movementController = GetComponent<Movement>();
+        eatingSFX = GetComponent<AudioSource>();
+        eatingSFX.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        time -= Time.deltaTime;
+        if (time <= 0)
+        {
+            SceneManager.LoadScene("GameOverMG");
+        }
+        Debug.Log(time);
+        timeText.text = "Time:" + time.ToString("00");
+
         //input for all dirctions
         if (Input.GetKeyDown(KeyCode.W))
         {
             movementController.SetDirection("up");
+
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -37,13 +53,31 @@ public class PacManController : MonoBehaviour
         {
             movementController.SetDirection("right");
         }
+        //check in what direction the player is moving
+        if (movementController.GetDirection() == "up")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        }
+        else if (movementController.GetDirection() == "down")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 270);
+        }
+        else if (movementController.GetDirection() == "left")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        else if (movementController.GetDirection() == "right")
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0);
+        }
+        CheckForWin();
     }
 
     private void CheckForWin()
     {
         if (score == 2980)
         {
-
+            SceneManager.LoadScene("WinScreenMG");
         }
         //var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Node"|| obj.name == "Node(Clone)");
         //return true;
