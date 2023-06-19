@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/SpaceGame/LosingScreenMG.unity
+    guid: 74d44c67560a8b94fb03ecc271c24dec
+  - enabled: 1
+    path: Assets/Scenes/SpaceGame/WinScreenMG.unity
+    guid: 5b23402dcc4d4d045a00f0e7a9bf6405
   m_configObjects: {}

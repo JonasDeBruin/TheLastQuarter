@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -37,7 +38,15 @@ public class Player : MonoBehaviour
         anim.Play("Player_dead");
         GetComponent<Platformer_Movement>().enabled = false;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        StartCoroutine(DelaySceneLoad());
+        
     }
 
-    
+    IEnumerator DelaySceneLoad()
+    {
+        yield return new WaitForSeconds(1f); // Wait 1 seconds
+        SceneManager.LoadScene("LosingScreenMG");
+    }
+
+
 }
