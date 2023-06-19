@@ -44,6 +44,10 @@ public class Arcade_Machine : MonoBehaviour
         cam = FindObjectOfType<Camera>();
         text.color = new Color(1, 1, 1, 0);
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        for (int i = 0; i < lights.Count; i++)
+        {
+            lights[i].GetComponent<Light>().intensity = 0;
+        }
     }
 
     private void Update()
@@ -77,6 +81,14 @@ public class Arcade_Machine : MonoBehaviour
         }
         else if (inRange)
         {
+            if (lights[0].GetComponent<Light>().intensity > 0.9f)
+            {
+                for (int i = 0; i < lights.Count; i++)
+                {
+                    float temp = lights[i].GetComponent<Light>().intensity;
+                    lights[i].GetComponent<Light>().intensity -= temp * Time.deltaTime * 5;
+                }
+            }
             if(text.color.a < 1 && !gameStarted)
             {
                 text.color += new Color(0, 0, 0, Time.deltaTime*2);
