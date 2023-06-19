@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PacManController : MonoBehaviour
 {
     Movement movementController;
     private int score = 0;
+    private float time = 60;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text timeText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,13 @@ public class PacManController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        time -= Time.deltaTime;
+        if (time <= 0)
+        {
+            SceneManager.LoadScene("GameOverMG");
+        }
+        Debug.Log(time);
+        timeText.text = "Time:" + time.ToString("00");
 
         //input for all dirctions
         if (Input.GetKeyDown(KeyCode.W))
@@ -55,13 +66,14 @@ public class PacManController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0);
         }
+        CheckForWin();
     }
 
     private void CheckForWin()
     {
         if (score == 2980)
         {
-
+            SceneManager.LoadScene("WinScreenMG");
         }
         //var objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Node"|| obj.name == "Node(Clone)");
         //return true;
