@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
@@ -31,6 +32,14 @@ public class Finish : MonoBehaviour
             player.GetComponentInChildren<Platformer_Movement>().Resetvelocity();
             player.GetComponentInChildren<Animator>().Play("Player_Finish");
             player.GetComponent<Platformer_Movement>().enabled = false;
+            StartCoroutine(DelaySceneLoad());
+
         }
+    }
+
+    IEnumerator DelaySceneLoad()
+    {
+        yield return new WaitForSeconds(1f); // Wait 1 seconds
+        SceneManager.LoadScene("WinScreenMG");
     }
 }

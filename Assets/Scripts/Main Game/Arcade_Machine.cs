@@ -26,6 +26,8 @@ public class Arcade_Machine : MonoBehaviour
 
     public List<GameObject> lights = new List<GameObject>();
 
+    public GamemanagerMainGame gameManagerMainGame;
+
     private void OnTriggerEnter(Collider other)
     {
         inRange = true;
@@ -67,7 +69,7 @@ public class Arcade_Machine : MonoBehaviour
                 {
                     lights[i].GetComponent<Light>().enabled = false;
                 }
-
+                gameManagerMainGame.safePosition();
                 SceneManager.LoadScene(GameSceneIndex);
                 //Start Game
             }
