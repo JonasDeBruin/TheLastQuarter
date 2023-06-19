@@ -13,16 +13,20 @@ public class PacManController : MonoBehaviour
     private float time = 60;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text timeText;
+    [SerializeField] private AudioSource eatingSFX;
 
     // Start is called before the first frame update
     void Start()
     {
         movementController = GetComponent<Movement>();
+        eatingSFX = GetComponent<AudioSource>();
+        eatingSFX.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         time -= Time.deltaTime;
         if (time <= 0)
         {
