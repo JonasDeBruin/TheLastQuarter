@@ -24,7 +24,7 @@ public class PlayerCameraMove : MonoBehaviour
     {
         if (on)
         {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter))
+            if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 animate = !animate;
             }
